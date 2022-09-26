@@ -1,0 +1,247 @@
+# Config file for DC-1
+
+###### General Instructions ######
+# This serves as a user-configuration file, where user can input all the necessary information to activate the
+# perception system of distribution center (DC). The user is expected to input the composition of the DC.
+# Here, the DC is composed of vehicles and infrastructures.
+# Each vehicle is composed of LiDARs, cameras, odometry and imu sensors
+# Each infrastructure is composed of LiDARs, cameras and OptiTrack sensors
+# Please note that though the OptiTrack sensor is part of infrastructure, the sensing is done for each vehicle, and becomes part of each vehicle.
+
+###### Instructions for ID numbers ######
+# DC_"i" --> "i" is the id number of distribution center
+# VEHICLE_"i" --> "i" is the id number of vehicle
+# INFRASTRUTURE_"i" --> "i" is the id number of infrastructure
+# LIDAR_"i" --> "i" is the id number of LiDAR
+# CAMERA_"i" --> "i" is the id number of camera
+# NAMESPACE --> is the name-space (string) used to define the ROS topic of that respective item
+# Unit type while invoking scripts --> 'v' for vehicle, 'i' for infrastructure
+
+DC_1:
+  NAMESPACE: DC_1
+  NUMBER_OF_VEHICLES: 6
+  NUMBER_OF_INFRASTRUCTURES: 1
+
+  INFRASTRUCTURE_1:
+    TYPE: INFRASTRUCTURE
+    NAMESPACE: INFRASTRUCTURE_1
+    NUMBER_OF_LIDARS: 0
+    NUMBER_OF_CAMERAS: 0
+    OPTITRACK: True
+
+  VEHICLE_1:
+    TYPE: TRACTOR                # Can take values of "TRACTOR" or "SEMITRAILER" in this case
+    NAMESPACE: TRACTOR_1
+    NUMBER_OF_LIDARS: 1
+    NUMBER_OF_CAMERAS: 1
+    ACTIVATE_OPTITRACK: True
+    OPTITRACK_PUBLISH_RATE: 5    # hz, it is advised to keep this same as the Lidar publish rate
+
+    # Optitrack is currently configured to give information of rear-axle of tractor. This can be configured to any other point on the XY rigid plane (currently)
+    OPTITRACK_CORRECTION_LONGITUDINAL_LENGTH: 0.33   # m
+    OPTITRACK_CORRECTION_LATERAL_LENGTH: 0.0         # m
+
+    LIDAR_1:
+      NAMESPACE: LIDAR_1
+
+      #### PROPERTIES ####
+      # Inherent properties
+      ANGLE_MIN: 0.0            # degrees
+      ANGLE_MAX: 360.0            # degrees
+      ANGLE_INCREMENT: 1.0        # degrees
+      RANGE_MIN: 0.0              # meters
+      RANGE_MAX: 3.5              # meters
+
+      # ROS properties
+      TOPIC_SUB: /tractor1/scan   # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 5             # hz
+
+
+      #### FUNCTIONALITIES ####
+      # Pre-Processing
+      ANGLE_MIN_VIEW: 120.0       # degrees
+      ANGLE_MAX_VIEW: 240.0       # degrees
+      REMOVE_CABIN_LIDAR_POINTS: True
+
+      # Live Feed
+      SHOW_FEED_WHILE_ACTIVATION: True
+      FEED_RATE: 5                 # hz
+
+
+    CAMERA_1:
+      NAMESPACE: CAMERA_1
+
+      # ROS properties
+      TOPIC_SUB: /tractor1/raspicam_node/image/compressed    # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 5             # hz
+
+      # Live Feed
+      SHOW_FEED_WHILE_ACTIVATION: True
+
+    ODOMETRY:
+      # ROS properties
+      TOPIC_SUB: /tractor1/odom    # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 10             # hz   (can go upto 15 hz)
+
+    IMU:
+      # ROS properties
+      TOPIC_SUB: /tractor1/imu     # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 40             # hz  (can go upto 80 hz)
+
+
+  VEHICLE_2:
+    TYPE: TRACTOR                # Can take values of "TRACTOR" or "SEMITRAILER"
+    NAMESPACE: TRACTOR_2
+    NUMBER_OF_LIDARS: 1
+    NUMBER_OF_CAMERAS: 1
+    ACTIVATE_OPTITRACK: True
+    OPTITRACK_PUBLISH_RATE: 5    # hz, it is advised to keep this same as the Lidar publish rate
+
+    # Optitrack is currently configured to give information of rear-axle of tractor. This can be configured to any other point on the XY rigid plane (currently)
+    OPTITRACK_CORRECTION_LONGITUDINAL_LENGTH: 0.33   # m
+    OPTITRACK_CORRECTION_LATERAL_LENGTH: 0.0         # m
+
+    LIDAR_1:
+      NAMESPACE: LIDAR_1
+
+      #### PROPERTIES ####
+      # Inherent properties
+      ANGLE_MIN: 0.0              # degrees
+      ANGLE_MAX: 360.0            # degrees
+      ANGLE_INCREMENT: 1.0        # degrees
+      RANGE_MIN: 0.0              # meters
+      RANGE_MAX: 3.5              # meters
+
+      # ROS properties
+      TOPIC_SUB: /tractor2/scan   # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 5             # hz
+
+
+      #### FUNCTIONALITIES ####
+      # Pre-Processing
+      ANGLE_MIN_VIEW: 120.0       # degrees
+      ANGLE_MAX_VIEW: 240.0       # degrees
+      REMOVE_CABIN_LIDAR_POINTS: True
+
+      # Live Feed
+      SHOW_FEED_WHILE_ACTIVATION: True
+      FEED_RATE: 5                 # hz
+
+
+    CAMERA_1:
+      NAMESPACE: CAMERA_1
+
+      # ROS properties
+      TOPIC_SUB: /tractor2/raspicam_node/image/compressed    # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 5             # hz
+
+      # Live Feed
+      SHOW_FEED_WHILE_ACTIVATION: True
+
+    ODOMETRY:
+      # ROS properties
+      TOPIC_SUB: /tractor2/odom    # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 10             # hz   (can go upto 15 hz)
+
+    IMU:
+      # ROS properties
+      TOPIC_SUB: /tractor2/imu     # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 40             # hz  (can go upto 80 hz)
+
+
+  VEHICLE_3:
+    TYPE: TRACTOR                # Can take values of "TRACTOR" or "SEMITRAILER"
+    NAMESPACE: TRACTOR_3
+    NUMBER_OF_LIDARS: 1
+    NUMBER_OF_CAMERAS: 1
+    ACTIVATE_OPTITRACK: True
+    OPTITRACK_PUBLISH_RATE: 5    # hz, it is advised to keep this same as the Lidar publish rate
+
+    # Optitrack is currently configured to give information of rear-axle of tractor. This can be configured to any other point on the XY rigid plane (currently)
+    OPTITRACK_CORRECTION_LONGITUDINAL_LENGTH: 0.33   # m
+    OPTITRACK_CORRECTION_LATERAL_LENGTH: 0.0         # m
+
+    LIDAR_1:
+      NAMESPACE: LIDAR_1
+
+      #### PROPERTIES ####
+      # Inherent properties
+      ANGLE_MIN: 0.0            # degrees
+      ANGLE_MAX: 360.0            # degrees
+      ANGLE_INCREMENT: 1.0        # degrees
+      RANGE_MIN: 0.0              # meters
+      RANGE_MAX: 3.5              # meters
+
+      # ROS properties
+      TOPIC_SUB: /tractor3/scan   # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 5             # hz
+
+
+      #### FUNCTIONALITIES ####
+      # Pre-Processing
+      ANGLE_MIN_VIEW: 120.0       # degrees
+      ANGLE_MAX_VIEW: 240.0       # degrees
+      REMOVE_CABIN_LIDAR_POINTS: True
+
+      # Live Feed
+      SHOW_FEED_WHILE_ACTIVATION: True
+      FEED_RATE: 5                 # hz
+
+
+    CAMERA_1:
+      NAMESPACE: CAMERA_1
+
+      # ROS properties
+      TOPIC_SUB: /tractor3/raspicam_node/image/compressed    # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 5             # hz
+
+      # Live Feed
+      SHOW_FEED_WHILE_ACTIVATION: True
+
+    ODOMETRY:
+      # ROS properties
+      TOPIC_SUB: /tractor3/odom    # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 10             # hz   (can go upto 15 hz)
+
+    IMU:
+      # ROS properties
+      TOPIC_SUB: /tractor3/imu     # Raw ROS topic name from the firmware/turtlebot_core node
+      PUBLISH_RATE: 40             # hz  (can go upto 80 hz)
+
+  VEHICLE_4:
+    TYPE: SEMITRAILER                # Can take values of "TRACTOR" or "SEMITRAILER"
+    NAMESPACE: SEMITRAILER_1
+    NUMBER_OF_LIDARS: 0
+    NUMBER_OF_CAMERAS: 0
+    ACTIVATE_OPTITRACK: True
+    OPTITRACK_PUBLISH_RATE: 5    # hz, it is advised to keep this same as the Lidar publish rate
+
+    # Optitrack is currently configured to give information of rear-axle of tractor. This can be configured to any other point on the XY rigid plane (currently)
+    OPTITRACK_CORRECTION_LONGITUDINAL_LENGTH: 0.17   # m
+    OPTITRACK_CORRECTION_LATERAL_LENGTH: 0.0         # m
+
+
+  VEHICLE_5:
+    TYPE: SEMITRAILER                # Can take values of "TRACTOR" or "SEMITRAILER"
+    NAMESPACE: SEMITRAILER_2
+    NUMBER_OF_LIDARS: 0
+    NUMBER_OF_CAMERAS: 0
+    ACTIVATE_OPTITRACK: True
+    OPTITRACK_PUBLISH_RATE: 5    # hz, it is advised to keep this same as the Lidar publish rate
+
+    # Optitrack is currently configured to give information of rear-axle of tractor. This can be configured to any other point on the XY rigid plane (currently)
+    OPTITRACK_CORRECTION_LONGITUDINAL_LENGTH: 0.17   # m
+    OPTITRACK_CORRECTION_LATERAL_LENGTH: 0.0         # m
+
+
+  VEHICLE_6:
+    TYPE: SEMITRAILER                # Can take values of "TRACTOR" or "SEMITRAILER"
+    NAMESPACE: SEMITRAILER_3
+    NUMBER_OF_LIDARS: 0
+    NUMBER_OF_CAMERAS: 0
+    ACTIVATE_OPTITRACK: True
+    OPTITRACK_PUBLISH_RATE: 5    # hz, it is advised to keep this same as the Lidar publish rate
+
+    # Optitrack is currently configured to give information of rear-axle of tractor. This can be configured to any other point on the XY rigid plane (currently)
+    OPTITRACK_CORRECTION_LONGITUDINAL_LENGTH: 0.17   # m
+    OPTITRACK_CORRECTION_LATERAL_LENGTH: 0.0         # m

@@ -1,0 +1,31 @@
+# Config file for Obstacle Detection at Sensor Level
+
+###### General Instructions ######
+# This serves as a user-configuration file, where user can input all the necessary information to activate the object detection using a LiDAR
+
+# Image properties
+IMG_RESIZE_FACTOR: 1.0         #
+SHOW_PLOT: True
+
+# ROS properties
+PUBLISH_RATE: 5             # hz
+
+# Collision Alert details
+COLLISION_ALERT_CHECK_DISTANCE: 0.4    # m
+
+
+
+##############################################
+# Occupancy Grid Map Properties
+# Please DO NOT change the values given below, if you plan to use object-detection as well!
+
+#### Instructions ####
+# This is to define how the real map-area correspond to the pixel-area of the image.
+# For example: To correspond 0.03 (m) by 0.03 (m) to an image area of 2 pixels by 2 pixels,
+# provide OGM_GRID_SIZE as [0.03, 0.03] and OGM_GRID_TO_PX as [2, 2]
+
+# Occupancy Grid Map Properties
+OGM_GRID_SIZE: [0.03, 0.03]   # mxm  (Use [0.03, 0.03] for object detection)
+OGM_IMG_SIZE: [416, 416, 3]
+OGM_GRID_TO_PX: [2, 2]        # (Use [2, 2] for object detection)
+

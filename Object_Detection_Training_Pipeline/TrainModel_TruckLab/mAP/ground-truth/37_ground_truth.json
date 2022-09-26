@@ -1,0 +1,1 @@
+[{"class_name": "tire", "bbox": "9 96 54 141", "used": false}, {"class_name": "semitrailer", "bbox": "202 166 273 222", "used": true}, {"class_name": "tractor", "bbox": "58 101 76 117", "used": false}, {"class_name": "tractor", "bbox": "79 108 102 132", "used": true}, {"class_name": "tractor", "bbox": "93 40 111 60", "used": true}]

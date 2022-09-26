@@ -1,0 +1,77 @@
+# Config file for data collection
+
+###### General Instructions ######
+# This serves as a user-configuration file, where user can input all the necessary information to perform data collection
+
+
+###### Instructions #######
+# "meta_data": provide all information about data in this section, for example data storage location, duration, file name, etc.
+# "data_to_be_collected": provide all the necessary data to be collected from the vehicles of the distribution center.
+# Use the same name-space provided in the "dc_1_system_definition.yaml" file to identity each vehicle
+# Provide True/False for each "record" --> to indicate whether to record the data of that respective ROS topic
+# The data stored shall be placed in the mentioned below folder as a ROS bag file
+
+
+meta_data:
+  frequency: 0.1    # hz
+  # It is advised not to change the folder_location unless necessary
+  folder_location: /home/emeinder/catkin_ws/src/perception_pkg/src/scripts/data/data_collected_per_config/collected_bags   # Please give absolute path as raw string
+  file_name: bag_lidar_static     # Please give just the file name without extension
+  max_duration: 10   # seconds
+  total_num_vehicles: 6
+
+
+data_to_be_collected:
+  vehicle_1:
+    type: TRACTOR
+    namespace: TRACTOR_1
+    num_of_lidars: 1
+    num_of_cameras: 1
+    optitrack_record: True
+    lidar_1:
+        namespace: LIDAR_1
+        record: True
+    camera_1:
+      namespace: CAMERA_1
+      record: False
+
+  vehicle_2:
+    type: TRACTOR
+    namespace: TRACTOR_2
+    num_of_lidars: 1
+    num_of_cameras: 1
+    optitrack_record: False
+    lidar_1:
+      namespace: LIDAR_2
+      record: False
+    camera_1:
+      namespace: CAMERA_2
+      record: False
+
+  vehicle_3:
+    type: TRACTOR
+    namespace: TRACTOR_3
+    num_of_lidars: 1
+    num_of_cameras: 1
+    optitrack_record: False
+    lidar_1:
+      namespace: LIDAR_3
+      record: False
+    camera_1:
+      namespace: CAMERA_3
+      record: False
+
+  vehicle_4:
+    type: SEMITRAILER
+    namespace: SEMITRAILER_1
+    optitrack_record: False
+
+  vehicle_5:
+    type: SEMITRAILER
+    namespace: SEMITRAILER_2
+    optitrack_record: False
+
+  vehicle_6:
+    type: SEMITRAILER
+    namespace: SEMITRAILER_3
+    optitrack_record: False

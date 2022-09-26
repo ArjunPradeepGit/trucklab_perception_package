@@ -1,0 +1,25 @@
+# Config file for Object Detection at Sensor Level
+
+###### General Instructions ######
+# This serves as a user-configuration file, where user can input all the necessary information to activate the obstacle detection using a LiDAR
+
+# Detection properties
+SHOW_OBJECT_DETECTION_PLOT: True
+
+# ROS properties
+SUBSCRIBE_RATE: 0.5           # hz, which is also the publish rate of detections (0.5 hz is the current maximum)
+
+
+##############################################
+# Please DO NOT change the values given below
+# Occupancy Grid Map Properties
+
+#### Instructions ####
+# This is to define how the real map-area correspond to the pixel-area of the image.
+# For example: To correspond 0.03 (m) by 0.03 (m) to an image area of 2 pixels by 2 pixels,
+# provide OGM_GRID_SIZE as [0.03, 0.03] and OGM_GRID_TO_PX as [2, 2]
+
+OGM_GRID_SIZE: [0.03, 0.03]   # (m)x(m)  (Use [0.03, 0.03] for object detection)
+OGM_IMG_SIZE: [416, 416, 3]
+OGM_GRID_TO_PX: [2, 2]        # (Use [2 pixels, 2 pixels] for object detection)
+
